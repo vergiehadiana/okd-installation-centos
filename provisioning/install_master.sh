@@ -10,7 +10,8 @@ curl -o ansible.rpm https://releases.ansible.com/ansible/rpm/release/epel-7-x86_
 yum -y --enablerepo=epel install ansible.rpm
 
 # checkout openshift-ansible repository
-[ ! -d openshift-ansible ] && git clone https://github.com/openshift/openshift-ansible.git
+# BACKUP : [ ! -d openshift-ansible ] && git clone https://github.com/openshift/openshift-ansible.git
+[ ! -d openshift-ansible ] && git clone https://github.com/openshift/openshift-ansible/tree/release-3.11.git
 cd openshift-ansible && git fetch && git checkout release-${OKD_VERSION} && cd ..
 
 mkdir -p /etc/origin/master/
@@ -46,4 +47,3 @@ echo "*"
 echo "$ oc login -u ${OKD_USERNAME} -p ${OKD_PASSWORD} https://console.$DOMAIN:$API_PORT/"
 echo "#####################################################################"
 
-oc login -u ${OKD_USERNAME} -p ${OKD_PASSWORD} https://console.$DOMAIN:$API_PORT/
